@@ -13,6 +13,17 @@ H = np.array(H)
 fig1 = plt.figure()
 ax1 = plt.axes()
 
+hz = np.linspace(-44100, 44100, 512)
+
 for i in range(H.shape[1]):
-    ax1.plot(np.linspace(-44100, 44100, 512), 10*np.log10(np.fft.fft(H[:,i])))
+    ax1.plot(hz, 10*np.log10(np.fft.fft(H[:,i])))
+plt.show()
+
+fig2 = plt.figure()
+ax2 = plt.axes()
+
+barks = 13*np.arctan(0.00076*hz) + 3.5*np.arctan((hz/7500)**2)
+
+for i in range(H.shape[1]):
+    ax2.plot(barks, 10*np.log10(np.fft.fft(H[:,i])))
 plt.show()
