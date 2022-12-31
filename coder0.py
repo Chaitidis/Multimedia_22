@@ -2,15 +2,20 @@ import numpy as np
 from matplotlib import pyplot as plt
 import wave
 import createFilters
+import frame 
 
 def coder0(wavin, h, M, N):
     
     myfile = wave.open(wavin, 'r')
-    myfile.setpos(M*N)
-    frames = myfile.readframes(M*N)
-    frames_array = np.frombuffer(frames, dtype=np.int16)
-    print(myfile.getnframes())
-    return frames_array
+    
+    nFrames = myfile.getnframes()
+    
+    for i in range(0,nFrames, M*N):
+        myfile.setpos(i)
+        samples = myfile.readframes(M*N)
+        samples = np.frombuffer(frame, dtype=np.int16)
+        frameFinal = frame.frame_sub_analysis(samples, h, N)
+    return frame
 
 Ytot = coder0('myfile.wav', createFilters.h, 32, 36)
 
