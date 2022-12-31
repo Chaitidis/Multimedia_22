@@ -37,4 +37,4 @@ ax[0].set_title("Subband Filters in Hz", fontweight='bold')
 ax[1].set_title("Subband Filters in Barks", fontweight='bold')
 ax[2].set_title("Hz to Barks", fontweight='bold')
 
-plt.show()
+#plt.show()

@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import wave
 import createFilters
-import frame 
+import frame
 
 def coder0(wavin, h, M, N):
     
@@ -13,14 +13,16 @@ def coder0(wavin, h, M, N):
     for i in range(0,nFrames, M*N):
         myfile.setpos(i)
         samples = myfile.readframes(M*N)
-        samples = np.frombuffer(frame, dtype=np.int16)
-        frameFinal = frame.frame_sub_analysis(samples, h, N)
-    return frame
+        samples = np.frombuffer(samples, dtype=np.int16)
+        frameFinal = frame.frame_sub_analysis(samples, H=h, q=3)
+        
+    return frameFinal
 
-Ytot = coder0('myfile.wav', createFilters.h, 32, 36)
+Ytot = coder0('myfile.wav', createFilters.H, 32, 36)
 
 fig = plt.figure()
 ax = plt.axes()
-#print(Ytot)
-ax.plot(Ytot)
+print(Ytot)
+for k in range(Ytot.shape[0]):
+    ax.plot(np.arange(Ytot.shape[1]-1), Ytot[k,1:])
 plt.show()
