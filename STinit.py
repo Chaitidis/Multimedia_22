@@ -24,14 +24,14 @@ def STinit(c: np.ndarray, D: np.ndarray) -> np.ndarray:
     return ST
 
 
-data_1 = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,3,56,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 data = np.random.uniform(0,100, [1152])
-data_power = DCTpower.DCTpower(data)
-dataFinal = np.concatenate((data,data_1))
-print(data.shape[0])
-D = Dksparse.Dksparse(dataFinal.shape[0])
+# data_1 = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,3,56,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+# data_power = DCTpower.DCTpower(data)
+# dataFinal = np.concatenate((data,data_1))
+# print(data.shape[0])
+D = Dksparse.Dksparse(data.shape[0])
 
-st1 = STinit(dataFinal, D)
+st1 = STinit(data, D)
 print(st1)
-print(DCTpower.DCTpower(dataFinal[st1[-1]-5:st1[-1]]))
-print(DCTpower.DCTpower(dataFinal[st1[-1]]))
+# print(DCTpower.DCTpower(dataFinal[st1[-1]-5:st1[-1]]))
+# print(DCTpower.DCTpower(dataFinal[st1[-1]]))
