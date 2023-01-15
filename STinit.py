@@ -21,17 +21,18 @@ def STinit(c: np.ndarray, D: np.ndarray) -> np.ndarray:
         if k == P.shape[0]-1:
             if P[k] > P[k-1] and count == 0:
                 ST.append(k)     
-    return ST
+    return np.array(ST)
 
 
-data = np.random.uniform(0,100, [1152])
+#data = np.random.uniform(0,100, [1152])
+
 # data_1 = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,3,56,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 # data_power = DCTpower.DCTpower(data)
 # dataFinal = np.concatenate((data,data_1))
-# print(data.shape[0])
-D = Dksparse.Dksparse(data.shape[0])
+# print(data.shape[0]
 
-st1 = STinit(data, D)
-print(st1)
-# print(DCTpower.DCTpower(dataFinal[st1[-1]-5:st1[-1]]))
-# print(DCTpower.DCTpower(dataFinal[st1[-1]]))
+
+# D = Dksparse.Dksparse(data.shape[0])
+
+# st1 = STinit(data, D)
+# print(st1)
