@@ -26,13 +26,14 @@ def STreduction(ST: np.ndarray,c: np.ndarray,Tq: np.ndarray) -> np.ndarray:
         if k not in to_remove:    
             for j in range(k+1, len(barks)):
                 if np.abs(barks[k] - barks[j]) <0.5 and k not in to_remove:
+                    
                     to_remove.append(np.where(PMr == np.min([PMr[k], PMr[j]]))[0][0])
                   
     STr = np.delete(STr, to_remove)
     PMr = MaskPower(c, STr)
     return(STr,PMr)
 
-
+#np.random.seed(1)
 
 data = np.random.uniform(0,100,[1152])
 
