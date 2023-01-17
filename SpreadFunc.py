@@ -21,7 +21,8 @@ def SpreadFunc(ST: np.ndarray,PM: np.ndarray, Kmax: int) -> np.ndarray:
                 spread[i,k] = -17*Dz
             elif Dz >= 1 and  Dz < 8:          
                 spread[i,k] = (0.15*PM[k] - 17)*Dz - 0.15*PM[k]
-    
+            else: 
+                spread[i,k] = -np.Infinity
     return spread
 
 
@@ -29,7 +30,8 @@ def SpreadFunc(ST: np.ndarray,PM: np.ndarray, Kmax: int) -> np.ndarray:
 # data = np.random.uniform(0,100,[1152])
 # st1= np.arange(1152)
 # print(data)
-# PM=MaskPower(data, st1)
+# #PM=MaskPower(data, st1)
+# PM = np.ones(st1.shape[0])*100
 # spread1=SpreadFunc(st1, PM, 1151)
 # print(spread1)
 

@@ -41,6 +41,8 @@ Dk = Dksparse(1152)
 
 Tq = np.load('Tq.npy', allow_pickle=True).tolist()[0]
 
+
+
 st1 = STinit(data,Dk)
 
 str1, pm1 = STreduction(st1, data,Tq)
