@@ -11,7 +11,7 @@ def MaskPower(c: np.ndarray, ST: np.ndarray) -> np.ndarray:
     
     k = 0
     for i in ST:
-        if i ==0:
+        if i == 0:
             PM[k] = 10*np.log10(np.sum(10**(0.1*P[i:i+2])))
         elif i == c.shape[0] - 1:
             PM[k] = 10*np.log10(np.sum(10**(0.1*P[i-1:i+1])))  
