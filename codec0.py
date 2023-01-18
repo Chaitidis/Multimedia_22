@@ -4,6 +4,7 @@ import wave
 import frame
 import nothing
 import mp3
+import dct
 
 def coder0(wavin, h, M, N):
     
@@ -94,6 +95,8 @@ x_pd = np.concatenate((x, np.zeros([480])), axis = 0)
 xhat_pd = np.concatenate((np.zeros([480]), xhat), axis=0)
 
 snr = x_pd - xhat_pd
+
+
 
 ax.plot(snr )
 plt.show()
