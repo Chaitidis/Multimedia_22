@@ -11,6 +11,9 @@ def coder1(wavin, h, M, N):
     
     myfile = wave.open(wavin, 'r')
     nFrames = myfile.getnframes()
+    Tq = np.array(np.load('Tq.npy', allow_pickle=True).tolist()[0]) 
+    fig = plt.figure()
+    ax = plt.axes()
     
     for i in range(0,nFrames - M*N, M*N):
         myfile.setpos(i)
@@ -21,12 +24,17 @@ def coder1(wavin, h, M, N):
             Ytest1 = frameFinal    
         else:
             Ytest1 = np.concatenate((Ytest1, frameFinal), axis=0)
-        sameFrame = something1.dosomething1(frameFinal)
+        sameFrame, Tg = something1.dosomething1(frameFinal)
         if i ==0:
-            Ytot = sameFrame    
+            Ytot = sameFrame
+            ax.plot(Tq)
+            ax.plot(Tg - 30)    
         else:
             Ytot = np.concatenate((Ytot, sameFrame), axis=0)
-                
+            ax.plot(Tq)
+            ax.plot(Tg - 30)
+            
+    plt.show()            
     i = nFrames - M*N
     myfile.setpos(i)
     samples = myfile.readframes(M*N)
@@ -37,7 +45,7 @@ def coder1(wavin, h, M, N):
     
     Ytest1 = np.concatenate((Ytest1, frameFinal), axis=0)
     
-    sameFrame = something1.dosomething1(frameFinal)
+    sameFrame, Tg = something1.dosomething1(frameFinal)
     DCT = np.concatenate((Ytot, sameFrame), axis=0)     
           
     return (DCT,Ytest1)
@@ -48,8 +56,8 @@ def decoder1(DCT, h, M, N):
         DCT1 = DCT[k: k +N*M]
         Ytot1 = Ytot[k: k +N, :] 
         Ytot2 = dct.iframeDCT(DCT[k: k +N*M])
-        Ytot[k: k +N, :] = dct.iframeDCT(DCT[k*M: k*M +N*M])
-        #Ytot[k: k +N, :] = something1.idosomething1(DCT[k: k +N*M])
+        #Ytot[k: k +N, :] = dct.iframeDCT(DCT[k*M: k*M +N*M])
+        Ytot[k: k +N, :] = something1.idosomething1(DCT[k*M: k*M +N*M])
         
     for i in range(0, Ytot.shape[0]-N, N):
         ybuff = Ytot[i:i+(N)+int(h.shape[0]/M),:]
@@ -113,7 +121,7 @@ print(np.max(Ytest1-Ytest2))
 snr = x_pd - xhat_pd
 # delta = 10000
 err = Ytest1 - Ytest2
-ax.plot(snr)
+#ax.plot(snr)
 # ax.plot(np.concatenate((np.zeros([36]), err[:,1]) ))
 #ax.plot(Ytest1.T.reshape(16092,32)[:,1])
 plt.show()

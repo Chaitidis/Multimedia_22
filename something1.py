@@ -11,7 +11,7 @@ def dosomething1(Yc: np.ndarray) -> np.ndarray:
     Dk = Dksparse(Yc.shape[0]*Yc.shape[1]) 
     Tg = psycho(dct, Dk)
     
-    return dct
+    return (dct, Tg)
 
 def idosomething1(dct: np.ndarray) -> np.ndarray:
     
