@@ -17,12 +17,12 @@ def critical_bands(K: np.ndarray) -> np.ndarray:
     return cb
     
     
-bands = critical_bands(1152)
-fig = plt.figure()
-ax = plt.axes()
-ax.plot(bands)    
+# bands = critical_bands(1152)
+# fig = plt.figure()
+# ax = plt.axes()
+# ax.plot(bands)    
     
-plt.show()    
+# plt.show()    
     
     
     
