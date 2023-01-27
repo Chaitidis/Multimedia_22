@@ -17,22 +17,22 @@ def quantizer(x: np.ndarray,b: int) -> np.ndarray:
             ceil = np.abs(lim-x[i]).argmin()
             symb_index[i] =  ceil - (len(lim)/2 +1)
         test=(lim-x[i])
-        print(test)        
+                
             
     return symb_index        
 
 
 
 
-np.random.seed(0)
-data = np.random.uniform(-1,1, [100])
+# np.random.seed(0)
+# data = np.random.uniform(-1,1, [100])
 
-quant= quantizer(data,8)
+# quant= quantizer(data,8)
 
 
 
-fig1 = plt.figure()
-ax1=plt.axes()
-ax1.plot(quant)
-ax1.plot(data)
-plt.show()
+# fig1 = plt.figure()
+# ax1=plt.axes()
+# ax1.plot(quant)
+# ax1.plot(data)
+# plt.show()
