@@ -3,19 +3,23 @@ from matplotlib import pyplot as plt
 
 def quantizer(x: np.ndarray,b: int) -> np.ndarray:
     
-    zones = 2**b -1
-    lim = np.zeros(zones+1)
+    zones = 2**b
+    lim = np.linspace(-1, 1, zones+1)
+    symb_list = np.concatenate((np.arange(-zones/2 +1, 1, 1), np.arange(0,zones/2, 1)))
+    
     symb_index = np.zeros(len(x))
-    for i in range(zones+1):
-        lim[i] = (2*i/(zones+1)) - 1
         
     for i in range(len(x)):
         if np.sign((lim-x[i])[np.abs(lim-x[i]).argmin()]) < 0:
             floor = np.abs(lim-x[i]).argmin()
-            symb_index[i] =  floor - len(lim)/2
+            symb_index[i] =  symb_list[floor]
+        elif np.sign((lim-x[i])[np.abs(lim-x[i]).argmin()]) == 0 and np.abs(lim-x[i]).argmin() == 0:
+            floor = np.abs(lim-x[i]).argmin()
+            symb_index[i] =  symb_list[floor]
+                   
         else:
             ceil = np.abs(lim-x[i]).argmin()
-            symb_index[i] =  ceil - (len(lim)/2 +1)
+            symb_index[i] =  symb_list[ceil-1]
         test=(lim-x[i])
                 
             
