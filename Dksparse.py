@@ -24,23 +24,23 @@ def Dksparse(Kmax: int) ->np.ndarray:
     return sparse            
 
 
-# trial=Dksparse(1151)
-# fig=plt.figure()
-# ax=plt.axes(projection='3d')
-# # for k in range (1151):
-# #    Indexes=np.argwhere(trial[k,:]==1).flatten()
-# #    ax.scatter(np.ones(Indexes.shape[0])*k,Indexes)
+trial=Dksparse(1151)
+fig=plt.figure()
+ax=plt.axes(projection='3d')
+# for k in range (1151):
+#    Indexes=np.argwhere(trial[k,:]==1).flatten()
+#    ax.scatter(np.ones(Indexes.shape[0])*k,Indexes)
  
-# print(trial.shape) 
+print(trial.shape) 
    
-# x = range(trial.shape[0])
-# y = range(trial.shape[1])  
+x = range(trial.shape[0])
+y = range(trial.shape[1])  
 
-# X, Y = np.meshgrid(x,y) 
+X, Y = np.meshgrid(x,y) 
    
-# ax.scatter3D(X , Y, trial, c=trial, cmap='viridis' )   
-# ax.view_init(elev=90, azim=0)   
-# plt.show()
+ax.scatter3D(X , Y, trial, c=trial, cmap='viridis' )   
+ax.view_init(elev=90, azim=0)   
+plt.show()
  
  
  
