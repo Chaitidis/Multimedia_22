@@ -48,7 +48,7 @@ Tg = psycho(data, Dk)
 Tg1 = Tg -15
 # Tg[1] = 68
 # Tg[2] = 68
-symb, scale, bit = all_bands_quantizer(data, Tg1)
+# symb, scale, bit = all_bands_quantizer(data, Tg1)
 
 # print(symb)
 
