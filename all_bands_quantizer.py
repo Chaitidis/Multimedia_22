@@ -50,9 +50,9 @@ Tg1 = Tg - 30
 # Tg[2] = 68
 symb, scale, bit = all_bands_quantizer(data, Tg1)
 
-print(symb)
+# print(symb)
 
-fig = plt.figure()
-ax = plt.axes()
-ax.plot(symb)
-plt.show()
+# fig = plt.figure()
+# ax = plt.axes()
+# ax.plot(symb)
+# plt.show()
