@@ -27,13 +27,16 @@ def coder1(wavin, h, M, N):
         sameFrame, Tg = something1.dosomething1(frameFinal)
         if i ==0:
             Ytot = sameFrame
-            ax.plot(Tq)
-            ax.plot(Tg - 30)    
+            # ax.plot(Tq)
+            # ax.plot(Tg - 30)    
         else:
             Ytot = np.concatenate((Ytot, sameFrame), axis=0)
+            # ax.plot(Tq)
+            # ax.plot(Tg - 30)
+        if i == 200*M*N:
+            Ytot = np.concatenate((Ytot, sameFrame), axis=0)
             ax.plot(Tq)
-            ax.plot(Tg - 30)
-            
+            ax.plot(Tg - 30)    
     plt.show()            
     i = nFrames - M*N
     myfile.setpos(i)

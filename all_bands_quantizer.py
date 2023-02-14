@@ -45,7 +45,7 @@ data = np.random.uniform(-100,100, [1152])
 Dk = Dksparse(1152)
 Tq = np.array(np.load('Tq.npy', allow_pickle=True).tolist()[0])
 Tg = psycho(data, Dk)
-Tg1 = Tg - 30
+Tg1 = Tg -15
 # Tg[1] = 68
 # Tg[2] = 68
 symb, scale, bit = all_bands_quantizer(data, Tg1)
