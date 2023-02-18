@@ -25,7 +25,7 @@ def RLE(symb_index: np.ndarray, K: int) -> np.ndarray:
     # Return the run_symbols as a numpy array
     return np.array(run_symbols)
 
-# rle = RLE(all_bands_quantizer.symb, all_bands_quantizer.symb.shape[0])
+rle = RLE(all_bands_quantizer.symb, all_bands_quantizer.symb.shape[0])
 
 # print(rle)
 

@@ -27,7 +27,7 @@ def iRLE(run_symbols: np.ndarray, K: int) -> np.ndarray:
     
     return symb_index
 
-# symb1 = iRLE( RLE.rle, 1152)
+symb1 = iRLE( RLE.rle, 1152)
 
 # fig = plt.figure()
 # ax = plt.axes()   
