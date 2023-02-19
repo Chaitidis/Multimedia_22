@@ -20,4 +20,4 @@ def psycho(c: np.ndarray, D: np.ndarray) -> np.ndarray:
     Tg = Global_Masking_thresholds(Ti, Tq)
     
     # This adjustment just makes the "spikes" in the thresholds smaller in amplitude
-    return Tg - 30
+    return Tg - 15

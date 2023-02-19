@@ -2,16 +2,17 @@ import numpy as np
 import RLE
 
 def huff(run_symbols):
-    # Convert RLE output to NumPy array
+    
     rle_arr = np.array(run_symbols)
 
     # Compute symbol frequencies
     unique_symbols, indices = np.unique(rle_arr, axis=0, return_inverse=True)
     symbol_freqs = np.bincount(indices)
+    frame_symbol_prob = [[unique_symbols[symbol], freq] for symbol, freq in enumerate(symbol_freqs) if freq > 0]
+    # Represent RLE symbols with integers
     symbol_rep = np.arange(unique_symbols.shape[0])
-    # Build list of (frequency, symbol) tuples
-    freq_symbol_list = [[symbol_rep[symbol], freq] for symbol, freq in enumerate(symbol_freqs) if freq > 0]
-
+    
+    # Create class Nodes to build the huffman tree structure
     class Nodes:
         def __init__(self, symbol, freq, parent=None, left=None, right=None, code=None):
             self.freq = freq
@@ -33,9 +34,10 @@ def huff(run_symbols):
     all_nodes = []
     
     node_list = sorted(node_list, key=lambda node: node.freq)
+    
     # Build Huffman tree
     while len(node_list) > 1:
-        # Find the two tuples with the lowest frequency
+        # Find the two nodes with the lowest frequency
        
         min1 = node_list.pop(0)
         min_symbol1 = min1.symbol
@@ -60,7 +62,8 @@ def huff(run_symbols):
 
         # Sort the list by frequency in descending order
         node_list = sorted(node_list, key=lambda node: node.freq)
-        
+    
+    # Create the code for each RLE symbol    
     codes_dict = ['' for i in range(len(init_symbols))]
     for node in all_nodes:
         if node.symbol in init_symbols and '' in codes_dict:
@@ -83,14 +86,13 @@ def huff(run_symbols):
         frame_stream += codes_dict[symbol_rep[np.argwhere(unique_symbols == i)[0][0]]]
     
     # # Build numpy array of codes
-    # codes = np.zeros((len(codes_dict), 3), dtype=np.float32)
-    # for idx, (symbol, code) in enumerate(codes_dict.items()):
-    #     codes[idx, 0] = symbol
-    #     codes[idx, 1] = int(code, 2)
-    #     codes[idx, 2] = symbol_freqs[symbol] / len(run_symbols)
+    # frame_symbol_prob = np.ndarray([len(codes_dict), 2])
+    # for idx, symbol in enumerate(codes_dict):
+    #     frame_symbol_prob[idx, 0] = symbol
+    #     frame_symbol_prob[idx, 1] = symbol_freqs[symbol] / len(run_symbols)
 
-    return frame_stream, codes
+    return frame_stream, frame_symbol_prob
 
-stream1, prob = huff(RLE.rle)
+# stream1, prob = huff(RLE.rle)
 
-print(stream1)
+# print(prob)

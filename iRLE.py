@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import RLE
 from all_bands_quantizer import symb
 
+# Perform inverse RLE and retrieve the initial symbol array 
 def iRLE(run_symbols: np.ndarray, K: int) -> np.ndarray:
     
     symb_index = np.zeros(K)
@@ -15,6 +16,7 @@ def iRLE(run_symbols: np.ndarray, K: int) -> np.ndarray:
     counter = count + 1
     start = counter
     
+    # Translate the symbols using their RLE representation
     for i in range(1, len(run_symbols)):
         
         symb_index[counter] = run_symbols[i,0]

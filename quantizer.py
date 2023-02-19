@@ -8,6 +8,8 @@ def quantizer(x: np.ndarray,b: int) -> np.ndarray:
     # Compute the decision areas and zones 
     zones = 2**b
     lim = np.linspace(-1, 1, zones+1)
+    # The list of symbols contains the value '0' twice
+    # to indicate the merge of the two median bands around zero
     symb_list = np.concatenate((np.arange(-zones/2 +1, 1, 1), np.arange(0,zones/2, 1)))
     
     symb_index = np.zeros(len(x))
