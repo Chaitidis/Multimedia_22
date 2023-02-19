@@ -3,13 +3,17 @@ from Hz2Barks import Hz2Barks
 from MaskPower import MaskPower
 from matplotlib import pyplot as plt
 
+# We compute the spreading function in order to
+# determine the areas that tonal components affect and how much they affect these areas.
 def SpreadFunc(ST: np.ndarray,PM: np.ndarray, Kmax: int) -> np.ndarray:
     
     spread = np.ndarray([Kmax+1, ST.shape[0]])
 
     barks= Hz2Barks(np.array([(i+1)*689/36 for i in range(Kmax+1)]))
     
-    
+    # Compute the spreading function values
+    # depending on the power of the masker,
+    # as well as the distance (in Barks) from it
     for k in range(ST.shape[0]):
         for i in range(spread.shape[0]):
             Dz = barks[i] - barks[ST[k]]

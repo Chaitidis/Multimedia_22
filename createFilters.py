@@ -4,12 +4,15 @@ import mp3
 
 h = np.load('h.npy', allow_pickle=True).tolist()['h'].reshape(-1,)
 
+# Create filters for subband analysis/synthesis
 H = mp3.make_mp3_analysisfb(h, 32)
 G = mp3.make_mp3_synthesisfb(h, 32)
 
 H = np.array(H)
 G = np.array(G)
 
+
+# Plot the filters in the frequency space
 fig, ax = plt.subplots(3,1)
 plt.subplots_adjust(right=0.975, wspace=0.2, hspace=0.869)
 
@@ -22,7 +25,7 @@ for i in range(H.shape[1]):
 for i in range(H.shape[1]):
     ax[1].plot(barks, 10*np.log10(np.fft.fft(H[:,i])))
 
-
+# Plot Hz-Barks correspondence
 ax[2].plot(hz , barks)
 
 ax[0].set_ylabel("dB")

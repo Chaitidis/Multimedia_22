@@ -4,12 +4,16 @@ from DCTpower import DCTpower
 from Dksparse import Dksparse
 from STinit import STinit
 
+# Compute the power of each masker in the initial tonal components list
 def MaskPower(c: np.ndarray, ST: np.ndarray) -> np.ndarray:
     
     P = DCTpower(c)
     PM = np.ndarray(ST.shape)
     
     k = 0
+    
+    # We compute the final value of the power of each masker, 
+    # which takes the power of the adjacent DCT components into account  
     for i in ST:
         if i == 0:
             PM[k] = 10*np.log10(np.sum(10**(0.1*P[i:i+2])))

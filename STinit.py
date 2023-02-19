@@ -3,12 +3,15 @@ from matplotlib import pyplot as plt
 import Dksparse
 import DCTpower
 
+# Find the DCT components that are likely to be tonal ones
 def STinit(c: np.ndarray, D: np.ndarray) -> np.ndarray:
     
     
     P = DCTpower.DCTpower(c)
     ST = []
     
+    # Iterate throught each DCT component and check if it meets the criteria
+    # for being a masker. If it does, it is added to the initial tonal components list
     for k in range(0,c.shape[0]):
         
         Dk = [P*D[k,:]]
