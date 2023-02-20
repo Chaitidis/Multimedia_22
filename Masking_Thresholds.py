@@ -21,25 +21,3 @@ def Masking_Thresholds(ST: np.ndarray,PM: np.ndarray,Kmax: int) -> np.ndarray:
     return Ti        
 
 
-
-data = np.random.uniform(0,100, [1152])
-
-
-PM = np.random.uniform(0,100,[1152])
-st1= np.arange(1152)
-
-#PM=MaskPower(data, st1)
-#PM = np.ones(st1.shape[0])*100
-Ti1 = Masking_Thresholds(st1, PM, 1151)
-
-
-
-
-# fig = plt.figure()
-# ax = plt.axes(projection = '3d')
-
-
-
-# for i in range(Ti1.shape[0]):
-#     ax.scatter3D(np.ones(Ti1.shape[1])*i,np.arange(Ti1.shape[1]), Ti1[i,:] )
-# plt.show()

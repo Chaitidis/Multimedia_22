@@ -30,20 +30,3 @@ def SpreadFunc(ST: np.ndarray,PM: np.ndarray, Kmax: int) -> np.ndarray:
     return spread
 
 
-
-# data = np.random.uniform(0,100,[1152])
-# st1= np.arange(1152)
-# print(data)
-# #PM=MaskPower(data, st1)
-# PM = np.ones(st1.shape[0])*100
-# spread1=SpreadFunc(st1, PM, 1151)
-# print(spread1)
-
-# fig = plt.figure()
-# ax = plt.axes(projection = '3d')
-
-
-
-# for i in range(spread1.shape[0]):
-#     ax.scatter3D(np.ones(spread1.shape[1])*i,np.arange(spread1.shape[1]), spread1[i,:] )
-# plt.show()

@@ -111,9 +111,13 @@ x_pd = np.concatenate((x, np.zeros([480])), axis = 0)
 xhat_pd = np.concatenate((np.zeros([480]), xhat), axis=0)
 
 error = x_pd - xhat_pd
+true_error = error[480:]
 
-
-
-ax.plot(error)
+print("Decoded signal SNR: ", 10*np.log10(np.var(xhat)/np.var(true_error)))
+ax.plot(true_error)
 plt.show()
+
+
+
+
 

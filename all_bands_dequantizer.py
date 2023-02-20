@@ -21,10 +21,3 @@ def all_bands_dequantizer(symb_index: np.ndarray, B: np.ndarray, SF: np.ndarray)
         
     return xh
 
-# xh1 = all_bands_dequantizer(np.int16(all_bands_quantizer.symb), all_bands_quantizer.bit, all_bands_quantizer.scale)
-
-# fig = plt.figure()
-# ax = plt.axes()
-
-# ax.plot(all_bands_quantizer.data - xh1)    
-# plt.show()

@@ -41,21 +41,3 @@ def all_bands_quantizer(c: np.ndarray, Tg: np.ndarray) -> np.ndarray:
         
     return (symb_index, SF, B)    
 
-np.random.seed(0)
-
-data = np.random.uniform(-100,100, [1152])
-
-Dk = Dksparse(1152)
-Tq = np.array(np.load('Tq.npy', allow_pickle=True).tolist()[0])
-Tg = psycho(data, Dk)
-Tg1 = Tg
-# Tg[1] = 68
-# Tg[2] = 68
-symb, scale, bit = all_bands_quantizer(data, Tg1)
-
-# print(symb)
-
-# fig = plt.figure()
-# ax = plt.axes()
-# ax.plot(symb)
-# plt.show()

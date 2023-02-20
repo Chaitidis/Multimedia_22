@@ -42,24 +42,3 @@ def STreduction(ST: np.ndarray,c: np.ndarray,Tq: np.ndarray) -> np.ndarray:
     
     return(STr,PMr)
 
-#np.random.seed(1)
-
-data = np.random.uniform(0,100,[1152])
-
-Dk = Dksparse(1152)
-
-Tq = np.load('Tq.npy', allow_pickle=True).tolist()[0]
-
-
-
-st1 = STinit(data,Dk)
-
-str1, pm1 = STreduction(st1, data,Tq)
-#print(st1)
-#print(str1)
-
-# fig = plt.figure()
-# ax = plt.axes()
-
-# ax.plot(Tq)
-# plt.show()

@@ -27,11 +27,3 @@ def RLE(symb_index: np.ndarray, K: int) -> np.ndarray:
 
     return np.array(run_symbols)
 
-rle = RLE(all_bands_quantizer.symb, all_bands_quantizer.symb.shape[0])
-
-# print(rle)
-
-# fig = plt.figure()
-# ax = plt.axes()
-# ax.plot(rle[:,1].T)
-# plt.show()

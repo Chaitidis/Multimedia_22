@@ -85,14 +85,5 @@ def huff(run_symbols):
         
         frame_stream += codes_dict[symbol_rep[np.argwhere(unique_symbols == i)[0][0]]]
     
-    # # Build numpy array of codes
-    # frame_symbol_prob = np.ndarray([len(codes_dict), 2])
-    # for idx, symbol in enumerate(codes_dict):
-    #     frame_symbol_prob[idx, 0] = symbol
-    #     frame_symbol_prob[idx, 1] = symbol_freqs[symbol] / len(run_symbols)
+    return (frame_stream, frame_symbol_prob)
 
-    return frame_stream, frame_symbol_prob
-
-# stream1, prob = huff(RLE.rle)
-
-# print(prob)

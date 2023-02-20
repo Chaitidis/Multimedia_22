@@ -26,12 +26,3 @@ def MaskPower(c: np.ndarray, ST: np.ndarray) -> np.ndarray:
     return PM
 
 
-# data = np.random.uniform(0,100, [1152])
-
-# D = Dksparse(data.shape[0])
-
-# st1 = STinit(data, D)    
-
-# mp1 = MaskPower(data, st1)
-# print(data[st1[:]])
-# print(mp1)

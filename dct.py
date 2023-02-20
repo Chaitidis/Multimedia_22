@@ -23,17 +23,3 @@ def iframeDCT(c):
         frameFinal[:,int(i/36)] = idct/72
        
     return frameFinal
-# np.random.seed(0)
-# data = np.random.uniform(0,100, [36,32])
-
-# dct = frameDCT(data)
-# idct = iframeDCT(dct)
-
-# fig = plt.figure()
-# ax = plt.axes()
-# print("DCT's max value: " , np.max(data))
-# print("IDCT's Max Value : " , np.max(idct))
-# print("")
-
-# ax.plot(data - idct)
-# plt.show()

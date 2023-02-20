@@ -27,17 +27,14 @@ def coder1(wavin, h, M, N):
         sameFrame, Tg = something1.dosomething1(frameFinal)
         if i ==0:
             Ytot = sameFrame
-            # ax.plot(Tq)
-            # ax.plot(Tg - 30)    
+              
         else:
             Ytot = np.concatenate((Ytot, sameFrame), axis=0)
-            # ax.plot(Tq)
-            # ax.plot(Tg - 30)
+            
         if i == 200*M*N:
-            Ytot = np.concatenate((Ytot, sameFrame), axis=0)
             ax.plot(Tq)
             ax.plot(Tg - 30)    
-    plt.show()            
+    #plt.show()            
     i = nFrames - M*N
     myfile.setpos(i)
     samples = myfile.readframes(M*N)
@@ -51,18 +48,16 @@ def coder1(wavin, h, M, N):
     sameFrame, Tg = something1.dosomething1(frameFinal)
     DCT = np.concatenate((Ytot, sameFrame), axis=0)     
           
-    return (DCT,Ytest1)
+    return DCT
 
 def decoder1(DCT, h, M, N):
     Ytot = np.zeros([int(DCT.shape[0]/M), M])
     for k in range(0, Ytot.shape[0], N):
-        DCT1 = DCT[k: k +N*M]
-        Ytot1 = Ytot[k: k +N, :] 
-        Ytot2 = dct.iframeDCT(DCT[k: k +N*M])
-        #Ytot[k: k +N, :] = dct.iframeDCT(DCT[k*M: k*M +N*M])
+        
         Ytot[k: k +N, :] = something1.idosomething1(DCT[k*M: k*M +N*M])
         
     for i in range(0, Ytot.shape[0]-N, N):
+        
         ybuff = Ytot[i:i+(N)+int(h.shape[0]/M),:]
         frameFinal = frame.frame_sub_synthesis(ybuff, h)
         
@@ -77,8 +72,8 @@ def decoder1(DCT, h, M, N):
     ybuff = np.concatenate((initFrame,padding), axis=0)
     frameFinal = frame.frame_sub_synthesis(ybuff, h)
     xhat = np.concatenate((xhat,frameFinal),axis=0)    
-    print(xhat.shape)      
-    return (xhat,Ytot)
+       
+    return xhat
 
 
 
@@ -87,20 +82,20 @@ def codec1(wavin, h, M, N):
     H = mp3.make_mp3_analysisfb(h,32)
     G = mp3.make_mp3_synthesisfb(h, 32)
     
-    Ytot, Ytest1 = coder1(wavin, H, M, N)
-    xhat,Ytest2 = decoder1(Ytot, G, M, N)
+    Ytot = coder1(wavin, H, M, N)
+    xhat = decoder1(Ytot, G, M, N)
     
-    return (xhat, Ytot,Ytest1,Ytest2)
+    return (xhat, Ytot)
 
 h = np.load('h.npy', allow_pickle=True).tolist()['h'].reshape(-1,)
 
-xhat, Ytot,Ytest1 ,Ytest2 = codec1('myfile.wav', h, 32,36)
+xhat = codec1('myfile.wav', h, 32,36)
 
 scaled = np.int16(xhat / np.max(np.abs(xhat)) * 32767)
 
 
 myfile = wave.open('myfile.wav', 'r')
-myfile_hat = wave.open('myfile_hat.wav', 'wb')
+myfile_hat = wave.open('myfile_hat0.wav', 'wb')
 myfile_hat.setnchannels(myfile.getnchannels())
 myfile_hat.setsampwidth(myfile.getsampwidth())
 myfile_hat.setframerate(myfile.getframerate())
@@ -110,22 +105,5 @@ samples = myfile.readframes(myfile.getnframes())
 x = np.frombuffer(samples, dtype=np.int16)
 
 
-
-fig = plt.figure()
-ax = plt.axes()
-
-x_pd = np.concatenate((x, np.zeros([480])), axis = 0)
-xhat_pd = np.concatenate((np.zeros([480]), xhat), axis=0)
-# print("x",x[480:480+20] - np.round(xhat[0:20]))
-# #print("xhat", xhat[0:20])
-# print("x_pd",x_pd.shape)
-# print("xhat_pd", xhat_pd.shape)
-print(np.max(Ytest1-Ytest2))
-snr = x_pd - xhat_pd
-# delta = 10000
-err = Ytest1 - Ytest2
-#ax.plot(snr)
-# ax.plot(np.concatenate((np.zeros([36]), err[:,1]) ))
-#ax.plot(Ytest1.T.reshape(16092,32)[:,1])
 plt.show()
 

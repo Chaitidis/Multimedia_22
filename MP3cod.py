@@ -16,10 +16,9 @@ def MP3cod(wavin, h, M, N):
     myfile = wave.open(wavin, 'r')
     nFrames = myfile.getnframes()
     Tq = np.array(np.load('Tq.npy', allow_pickle=True).tolist()[0]) 
-    fig = plt.figure()
-    ax = plt.axes()
-    scale = np.ndarray([int(nFrames),25])
-    bits = np.ndarray([int(nFrames),25])
+    
+    scale = np.ndarray([int(nFrames/(M*N)),25])
+    bits = np.ndarray([int(nFrames/(M*N)),25])
     
     for i in range(0,nFrames - M*N, M*N):
         myfile.setpos(i)
@@ -31,8 +30,9 @@ def MP3cod(wavin, h, M, N):
         # else:
         #     Ytest1 = np.concatenate((Ytest1, frameFinal), axis=0)
         DCTframe, Tg = something1.dosomething1(frameFinal)
-        quantFrame, scale[i,:], bits[i,:] = all_bands_quantizer(DCTframe, Tg)
+        quantFrame, scale[int(i/(M*N)),:], bits[int(i/(M*N)),:] = all_bands_quantizer(DCTframe, Tg)
         RLEframe = RLE(quantFrame,1152)
+        
         frame_stream, frame_symbol_prob = huff(RLEframe)
         if i ==0:
             final = frame_stream
@@ -56,10 +56,14 @@ def MP3cod(wavin, h, M, N):
     #Ytest1 = np.concatenate((Ytest1, frameFinal), axis=0)
     
     DCTframe, Tg = something1.dosomething1(frameFinal)
-    quantFrame, scale[i,:], bits[i,:] = all_bands_quantizer(DCTframe, Tg)
+    quantFrame, scale[int(i/(M*N)),:], bits[int(i/(M*N)),:] = all_bands_quantizer(DCTframe, Tg)
     RLEframe = RLE(quantFrame,1152)
     frame_stream, frame_symbol_prob = huff(RLEframe)
     final_1 = np.concatenate((final_1, RLEframe), axis=0)
     final += frame_stream    
           
-    return (final,final_1, scale, bits)
+    return (final, final_1, scale, bits)
+
+# h = np.load('h.npy', allow_pickle=True).tolist()['h'].reshape(-1,)
+# H = mp3.make_mp3_analysisfb(h,32)
+# huff, rle, SF, B  = MP3cod('myfile.wav', H, 32, 36)

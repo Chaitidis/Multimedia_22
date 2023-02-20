@@ -13,27 +13,13 @@ def dequantizer(symb_index: np.ndarray, b: int) -> np.ndarray:
     # by assining the value '0' to the 2 median symbols, which corespond to 
     # the zones around zero 
     values = np.arange(-1 +step, 1, 2*step)
-    values[int(np.floor(zones/2))-1]  = 0
-    values[int(np.ceil(zones/2)):]  = values[int(np.ceil(zones/2)):] +2*step
+    values[int(zones/2)-1: int(zones/2)+1]  = 0
+    #values[int(np.ceil(zones/2)):]  = values[int(np.ceil(zones/2)):] +2*step
     xh = np.zeros(symb_index.shape[0])
     
     # Append the right value to each symbol in the 'symb_index' array
     for i in range(len(xh)):
-        xh[i] = values[symb_index[i]+int(zones/2)-1]    
+        xh[i] = values[int(symb_index[i]+int(zones/2)-1)]    
     
     return xh
 
-# np.random.seed(0)    
-# data = np.linspace(-1,1,2000)
-
-# quant= quantizer(data,4)
-
-# deq = dequantizer(np.int16(quant), 4)
-
-# fig = plt.figure()
-# ax = plt.axes()
-
-# ax.plot(data)
-# ax.plot(deq)
-# plt.show()
-    

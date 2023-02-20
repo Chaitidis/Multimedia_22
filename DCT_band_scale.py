@@ -20,18 +20,3 @@ def DCT_band_scale(c: np.ndarray) -> np.ndarray:
     return (scale, factors) 
 
    
-# np.random.seed(0)
-# data = np.random.uniform(-100,100, [1152])
-
-# scl, factor = DCT_band_scale(data)
-
-
-
-# fig1 = plt.figure()
-# ax1 = fig1.add_subplot(1,2,1)
-# ax2 = fig1.add_subplot(1,2,2)
-
-# ax1.plot(data)
-# ax2.plot(scl)
-
-# plt.show()
