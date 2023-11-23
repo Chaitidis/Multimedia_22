@@ -17,8 +17,8 @@
    - Quantization
 
 4. ## Compression/Coding
-   4.1 The common principles of compression methods
-   4.2 Analysis of important compression/encoding standards
+   4.1 The common principles of compression methods.
+   4.2 Analysis of important compression/encoding standards:
        - DPCM/ADPCM
        - MP3
        - JPEG and related standards
