@@ -22,8 +22,7 @@
       - DPCM/ADPCM
       - MP3
       - JPEG and related standards
-      - ITU - H.261 & H.262
-      - ISO - MPEG-1/2/4
+      - ITU - H.261 &
 
 ## 5. Broadcasting
    - Streaming/RTSP
@@ -35,6 +34,16 @@
 ## 7. Composition and Interactivity
    - VRML
 
+# Proposed Project: Audio Encoder/Decoder
+
+The proposed project aims to implement a simplified encoder/decoder of audio according to the MPEG1 Layer III standard. The process includes the following steps:
+
+1. Splitting the signal into frequency subbands.
+2. DCT implementation.
+3. Application of the psychoacoustic model.
+4. Quantization (and dequantization) of DCT coefficients.
+5. Run Length Encoding (and Decoding).
+6. Huffman encoding (and decoding).
 
 
 ## License
