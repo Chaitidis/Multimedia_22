@@ -2,7 +2,7 @@
 
 # Topics Covered
 
-1. # The (Digital) Multimedia
+## 1. The (Digital) Multimedia
    - Images
    - Audio
    - Video
@@ -10,29 +10,29 @@
    - 3D
    - Interactive
 
-2. # Representation (The formats used)
+## 2. Representation (The formats used)
 
-3. # Digitization
+## 3. Digitization
    - Sampling
    - Quantization
 
-4. # Compression/Coding
-   4.1 The common principles of compression methods.
-   4.2 Analysis of important compression/encoding standards:
-       - DPCM/ADPCM
-       - MP3
-       - JPEG and related standards
-       - ITU - H.261 & H.262
-       - ISO - MPEG-1/2/4
+## 4. Compression/Coding
+   ### 4.1 Common Compression Principles
+   ### 4.2 Analysis of Standards
+      - DPCM/ADPCM
+      - MP3
+      - JPEG and related standards
+      - ITU - H.261 & H.262
+      - ISO - MPEG-1/2/4
 
-5. # Broadcasting
+## 5. Broadcasting
    - Streaming/RTSP
    - ITU-H.32x
 
-6. # Storage/Recovery
+## 6. Storage/Recovery
    - ISO-MPEG-7
 
-7. # Composition and Interactivity
+## 7. Composition and Interactivity
    - VRML
 
 
